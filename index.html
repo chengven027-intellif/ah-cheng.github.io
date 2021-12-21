@@ -213,6 +213,158 @@
             
 
   
+    <article id="post-AI编译优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/">AI编译优化</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/" class="archive-article-date">
+        <time datetime="2021-12-21T07:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>本文是对知乎大佬杨军的文章的一个总结学习笔记.<br>原文请参考：知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/163717035">AI编译优化–总纲</a></p>
+<h3 id="常用的一些编译框架"><a href="#常用的一些编译框架" class="headerlink" title="常用的一些编译框架"></a>常用的一些编译框架</h3><ul>
+<li>TensorFlow XLA</li>
+<li>TVM</li>
+<li>Tensor Comprehension</li>
+<li>GLOW</li>
+<li>MLIR</li>
+</ul>
+<h3 id="编译器概述"><a href="#编译器概述" class="headerlink" title="编译器概述"></a>编译器概述</h3><ol>
+<li>深度学习编译器,其输入是比较灵活的,具备较高抽象度的计算图,输出包括CPU或者GPU等硬件平台上的底层机器码及执行引擎.</li>
+<li>AI编译器的目标是针对AI计算任务,以通用编译器的方式完成性能优化. 让用户可以专注于上层模型开发，降低用户手工优化性能的人力开发成本，进一步压榨硬件性能空间.</li>
+</ol>
+<ul>
+<li>计算密集算子(比如GEMM 和 Convolution)</li>
+<li>访存密集算子(比如Elementwise Add 和 BN)</li>
+</ul>
+<h2 id="Google-XLA"><a href="#Google-XLA" class="headerlink" title="Google XLA"></a>Google XLA</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>XLA： Accelerated Linear Algebra 加速线性代数<br>主要用于Tensorflow的编译器, 当然前端也可以用于 JAX Julia PyTorch Nx.</p>
+<p>XLA 使用JIT编译来分析用户在运行时创建的TF graph, 将TF OP 转换成HLO.并在HLO上面完成包括Op Fusion 在内的多种图优化.<br>最后基于LLVM完成CPU/GPU等后端机器代码的生成.</p>
+<p>对于自动CodeGen要求较高的计算密集型算子,如MatMul/Convolution等,和TensorFlow一样会直接调用cuBLAS/cuDNN等Vendor Library.<br>对除此之外的访存密集型算子, XLA会进行完全自动的Op Fusion和底层代码生成(CodeGen)</p>
+<p>XLA还包含一套静态的执行引擎,这个静态性体现在静态的Fixed Shape编译(即,在运行时为每一套输入shape进行一次完整编译并保留编译结果)<br>静态的算子调度顺序,静态的显存/内存优化等方面.</p>
+<h3 id="性能收益"><a href="#性能收益" class="headerlink" title="性能收益"></a>性能收益</h3><ul>
+<li>访存密集型算子的Op Fusion收益</li>
+<li>Fixed Shape架构下,计算图中的shape计算相关的子图会在编译时被分析为静态的编译时常量,节省执行时的节点数量</li>
+<li>HLO层在比TensorFlow Graph的颗粒度上可能存在更大的图优化空间</li>
+<li>此外还包含 可以方便开发者扩展更多的图优化pass, 包括layout和并发调度优化等等.</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>CodeGen原理简单，对计算密集型算子进一步提升性能的发挥空间不大</li>
+<li>静态shape的架构，用户计算图shape变化范围大的时候，应用会存在一定的限制.</li>
+</ul>
+<h2 id="TVM"><a href="#TVM" class="headerlink" title="TVM"></a>TVM</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>核心思想在于采用目标代码计算和调度分离的过程</p>
+<p>比如给定一个简单的计算表示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C = tvm.compute((n,), lambda i: A[i] + B[i])</span><br></pre></td></tr></table></figure>
+<p>可以得到C语言代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; n; ++i)</span><br><span class="line">&#123;</span><br><span class="line">    C[i] = A[i] + B[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对其额外的调度控制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = tvm.create_schedule(C.op)</span><br><span class="line">xo, xi = s[C].split(s[C].axis[0], factor=32)</span><br></pre></td></tr></table></figure>
+<p>则可以得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for (int xo = 0; xo &lt; ceil(n / 32); ++xo)</span><br><span class="line">&#123;</span><br><span class="line">    for (int xi = 0; xi &lt; 32; ++xi)</span><br><span class="line">    &#123;</span><br><span class="line">        int i = xo * 32 + xi;</span><br><span class="line">        if (i &lt; n)</span><br><span class="line">        &#123;</span><br><span class="line">            C[i] = A[i] + B[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种对调度控制的分离和抽象，使得相同的计算逻辑在编译过程中可以很方便地针对不同硬件的计算特性进行调整，在不同的后端上生成对应的高效执行代码。经过优化的 TVM 算子能够达到甚至超越通用算子库和专家手动调优代码的性能。</p>
+<p>TVM的 Auto Tuning 机制提供了自动化的性能探索能力，基于同一套调度模板，Auto TVM 能够通过在不同硬件上进行调优的方式寻找到最适合的模板参数，以达到最佳的性能</p>
+<h3 id="用户的使用方式"><a href="#用户的使用方式" class="headerlink" title="用户的使用方式"></a>用户的使用方式</h3><p>TVM 提供了两套不同层级的 API</p>
+<p>Relay是更高层的图表示 API，包含了很多常见的计算图算子，如卷积、矩阵乘法、各类激活函数等。Relay 中的复杂算子由一系列预定义的 TOPI(TVM Operator Inventory)模板提供，TOPI 中包含了这些算子的计算定义以及调度定义，用户无需关注其中的细节即可很方便地实现自己需要的计算图</p>
+<p>Relay 层 API 还提供了一系列图优化的能力，如 Op Fusion 等</p>
+<p>Relay 计算图在执行时需要首先通过 graph runtime codegen 转换成底层 TVM IR 的表示方式，再进一步编译成对应硬件的可执行代码</p>
+<p>在Relay API之外，用户也可能通过 TVM API 直接在 TVM IR 层进行计算表达，这一步则需要用户同时完成计算表示以及调度控制两部分内容，但这一更贴近硬件的表示层相对 Relay 层来说更为灵活。底层硬件的特殊计算指令可以通过 TVM Intrinsic 调用得以实现</p>
+<h3 id="优劣势"><a href="#优劣势" class="headerlink" title="优劣势"></a>优劣势</h3><p>优势：<br>    - 非常适合计算密集型算子</p>
+<p>劣势：<br>    - 调度控制需要由专家来撰写, 当前并未真正自动化.</p>
+<h2 id="MLIR"><a href="#MLIR" class="headerlink" title="MLIR"></a>MLIR</h2><h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>compiler infrasructure</p>
+<ul>
+<li>表示数据流图的能力, 包含动态shape, 用户可拓展的op生态系统,以及TF变量.(针对XLA的当前局限性)</li>
+<li>优化(optimizations)和转换(transform)在同一个图上(统一优化框架的野心)</li>
+<li>适合优化的形式表示内核的算子 (与下一条期望将计算密集算子和访存密集算子集中在同一套框架里统一打击)</li>
+<li>能够跨内核（融合、循环交换、平铺等）托管高性能计算风格的循环优化并转换数据的内存布局</li>
+<li>代码生成的转换包括：DMA插入，显式缓存管理、内存平铺 以及 一维 和二维寄存器架构的向量化 (对硬件memory/cache/register的分层描述能力)</li>
+<li>能够灵活的描述特定目标的操作 (灵活的对AI-domain ASIC的描述能力)</li>
+<li>在深度学习图上完成量化和其他图转换 (模型层面的优化)</li>
+</ul>
+<h3 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h3><ul>
+<li>模块化</li>
+<li>reuse 软件组件</li>
+<li>逐步降低算子</li>
+<li>通用的方法有效的针对硬件</li>
+</ul>
+<p>通过引入dialect的设计理念，使得不同应用场景可以根据自己的需要对MLIR的表示能力(不同抽象层次的算子描述,数据类型以及在相应的dialect层级上施加不同的图变换能力) 进行非侵入式的扩充.</p>
+<h3 id="compiler-infrasructure"><a href="#compiler-infrasructure" class="headerlink" title="compiler infrasructure"></a>compiler infrasructure</h3><p>MLIR 可以很方便的将不同的已经存在的优化方法以Dialect的方式接入,比如(XLA,TVM,甚至TensorRT, nGraph)</p>
+<h3 id="优劣势-1"><a href="#优劣势-1" class="headerlink" title="优劣势"></a>优劣势</h3><p>劣势：处于一个快速演化的阶段,很多东西仍然还在不断的发展.</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">编译器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1189,11 +1341,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">杂</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
