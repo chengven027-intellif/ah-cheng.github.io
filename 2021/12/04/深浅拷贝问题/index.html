@@ -18,7 +18,7 @@
 <meta property="og:description" content="构造函数分类 默认无参构造函数 有参构造函数 拷贝构造函数  构造函数的调用规则默认情况下,C++ 编译器至少给一个类添加3个函数  默认构造函数(无参, 函数体为空) 默认析构函数(无参, 函数体为空) 默认构造函数,对属性进行值拷贝 (引出深浅拷贝问题)  构造函数调用规则如下：  如果用户定义有参构造函数，c++不提供默认无参构造，但是会提供默认拷贝构造 如果用户定义拷贝构造函数，c++不再">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-04T08:14:19.000Z">
-<meta property="article:modified_time" content="2021-12-04T09:48:40.000Z">
+<meta property="article:modified_time" content="2021-12-24T02:59:07.877Z">
 <meta property="article:author" content="ah cheng">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -277,6 +277,8 @@
 <li>如果用户定义有参构造函数，c++不提供默认无参构造，但是会提供默认拷贝构造</li>
 <li>如果用户定义拷贝构造函数，c++不再提供其他构造函数</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="深浅拷贝问题"><a href="#深浅拷贝问题" class="headerlink" title="深浅拷贝问题"></a>深浅拷贝问题</h2><ul>
 <li>浅拷贝： 简单的复制拷贝操作</li>
 <li>深拷贝： 在堆区重新申请空间,进行拷贝操作.</li>
@@ -301,7 +303,7 @@
 <li>当函数的返回值是一个对象时,该对象实际上是函数内对象的一个拷贝.</li>
 </ul>
 <p>浅拷贝存在的问题是： 析构函数多次释放堆内存, 可以考虑使用std::shared_ptr来完美解决这个问题.</p>
-<span id="more"></span>
+<!--more-->
     
 
     
@@ -578,7 +580,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+                <a href="javascript:void(0)" class="js-tag color4">compiler</a>
               </li>
              
               <li class="article-tag-list-item">

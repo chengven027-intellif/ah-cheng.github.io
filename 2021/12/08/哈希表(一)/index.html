@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="概述哈希表也叫散列表,它可以快速定位到表中的位置, 不是通过比较来进行查找的. 设计思想hash 表采用一个映射函数f:key-&gt;address 来将关键字映射到哈希表中 哈希函数 直接定址法: 取关键字的某个线性地址为hash地址 除留余数法 平方取中法 折叠法  冲突处理策略 开放地址法 分离连接法  开放地址法根据哈希函数计算出在表中的地址，如果这个地址已经存在数据，则往后继续寻找空的">
+  <meta name="description" content="概述哈希表也叫散列表,它可以快速定位到表中的位置, 不是通过比较来进行查找的. 设计思想hash 表采用一个映射函数f:key-&gt;address 来将关键字映射到哈希表中 哈希函数 直接定址法: 取关键字的某个线性地址为hash地址 除留余数法 平方取中法 折叠法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哈希表(一)">
 <meta property="og:url" content="https://github.com/ah-cheng/ah-cheng.github.io/2021/12/08/%E5%93%88%E5%B8%8C%E8%A1%A8(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="ah cheng">
-<meta property="og:description" content="概述哈希表也叫散列表,它可以快速定位到表中的位置, 不是通过比较来进行查找的. 设计思想hash 表采用一个映射函数f:key-&gt;address 来将关键字映射到哈希表中 哈希函数 直接定址法: 取关键字的某个线性地址为hash地址 除留余数法 平方取中法 折叠法  冲突处理策略 开放地址法 分离连接法  开放地址法根据哈希函数计算出在表中的地址，如果这个地址已经存在数据，则往后继续寻找空的">
+<meta property="og:description" content="概述哈希表也叫散列表,它可以快速定位到表中的位置, 不是通过比较来进行查找的. 设计思想hash 表采用一个映射函数f:key-&gt;address 来将关键字映射到哈希表中 哈希函数 直接定址法: 取关键字的某个线性地址为hash地址 除留余数法 平方取中法 折叠法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-08T01:49:08.000Z">
-<meta property="article:modified_time" content="2021-12-08T01:59:09.321Z">
+<meta property="article:modified_time" content="2021-12-24T02:59:12.862Z">
 <meta property="article:author" content="ah cheng">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -269,6 +269,8 @@
 <li>平方取中法</li>
 <li>折叠法</li>
 </ul>
+<span id="more"></span>
+
 <h3 id="冲突处理策略"><a href="#冲突处理策略" class="headerlink" title="冲突处理策略"></a>冲突处理策略</h3><ul>
 <li>开放地址法</li>
 <li>分离连接法</li>
@@ -551,7 +553,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+                <a href="javascript:void(0)" class="js-tag color4">compiler</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -18,9 +18,9 @@
 <meta property="og:description" content="参考本文是对知乎大佬杨军的文章的一个总结学习笔记.原文请参考：知乎 AI编译优化–总纲 常用的一些编译框架 TensorFlow XLA TVM Tensor Comprehension GLOW MLIR  编译器概述 深度学习编译器,其输入是比较灵活的,具备较高抽象度的计算图,输出包括CPU或者GPU等硬件平台上的底层机器码及执行引擎. AI编译器的目标是针对AI计算任务,以通用编译器的方式完">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-21T07:02:52.000Z">
-<meta property="article:modified_time" content="2021-12-21T13:55:29.824Z">
+<meta property="article:modified_time" content="2021-12-24T02:58:34.864Z">
 <meta property="article:author" content="ah cheng">
-<meta property="article:tag" content="编译器">
+<meta property="article:tag" content="compiler">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ah cheng" type="application/atom+xml">
@@ -277,6 +277,8 @@
 <li>计算密集算子(比如GEMM 和 Convolution)</li>
 <li>访存密集算子(比如Elementwise Add 和 BN)</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="Google-XLA"><a href="#Google-XLA" class="headerlink" title="Google XLA"></a>Google XLA</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>XLA： Accelerated Linear Algebra 加速线性代数<br>主要用于Tensorflow的编译器, 当然前端也可以用于 JAX Julia PyTorch Nx.</p>
 <p>XLA 使用JIT编译来分析用户在运行时创建的TF graph, 将TF OP 转换成HLO.并在HLO上面完成包括Op Fusion 在内的多种图优化.<br>最后基于LLVM完成CPU/GPU等后端机器代码的生成.</p>
 <p>对于自动CodeGen要求较高的计算密集型算子,如MatMul/Convolution等,和TensorFlow一样会直接调用cuBLAS/cuDNN等Vendor Library.<br>对除此之外的访存密集型算子, XLA会进行完全自动的Op Fusion和底层代码生成(CodeGen)</p>
@@ -376,7 +378,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">编译器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">compiler</a>
         		</li>
       		
 		</ul>
@@ -446,6 +448,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2021/12/21/GlOW%E7%BC%96%E8%AF%91%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          GlOW 编译器
+        
+      </div>
+    </a>
   
   
     <a href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
@@ -596,7 +607,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+                <a href="javascript:void(0)" class="js-tag color4">compiler</a>
               </li>
              
               <li class="article-tag-list-item">
