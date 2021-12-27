@@ -213,6 +213,97 @@
             
 
   
+    <article id="post-TVM流程分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/27/TVM%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">TVM流程分析</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/27/TVM%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="archive-article-date">
+        <time datetime="2021-12-27T08:45:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-27</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>TVM version：0.9.dev0<br>LLVM version: 10.0.0</p>
+<p>本文主要用于跟踪relay.build的编译流程，生成机器码阶段.</p>
+<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p>本文选取的例子代码位于： tvm/gallery/how_to/compile_models/from_tflite.py<br>流程如下：<br>    - 下载mobilenet_v1_1的模型文件,并解压.<br>    - 加载一张测试图片<br>    - 编译这个模型(relay.build)<br>    - 输入相关参数,然后运行模型(model.run)<br>    - 后处理,输出测试结果.</p>
+<p>全文代码直接参考python文件</p>
+    
+    <a class="article-more-a" href="/2021/12/27/TVM%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编译器 TVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/27/TVM%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二叉平衡树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1049,109 +1140,6 @@
 
 
   
-    <article id="post-深浅拷贝问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/">深浅拷贝问题</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2021-12-04T08:14:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="构造函数分类"><a href="#构造函数分类" class="headerlink" title="构造函数分类"></a>构造函数分类</h2><ul>
-<li>默认无参构造函数</li>
-<li>有参构造函数</li>
-<li>拷贝构造函数</li>
-</ul>
-<h2 id="构造函数的调用规则"><a href="#构造函数的调用规则" class="headerlink" title="构造函数的调用规则"></a>构造函数的调用规则</h2><p>默认情况下,C++ 编译器至少给一个类添加3个函数</p>
-<ul>
-<li>默认构造函数(无参, 函数体为空)</li>
-<li>默认析构函数(无参, 函数体为空)</li>
-<li>默认构造函数,对属性进行值拷贝 (引出深浅拷贝问题)</li>
-</ul>
-<p>构造函数调用规则如下：</p>
-<ul>
-<li>如果用户定义有参构造函数，c++不提供默认无参构造，但是会提供默认拷贝构造</li>
-<li>如果用户定义拷贝构造函数，c++不再提供其他构造函数</li>
-</ul>
-    
-    <a class="article-more-a" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1283,6 +1271,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编译器 TVM</a>
               </li>
             
             <div class="clearfix"></div>

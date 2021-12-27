@@ -213,6 +213,109 @@
             
 
   
+    <article id="post-深浅拷贝问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/">深浅拷贝问题</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2021-12-04T08:14:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="构造函数分类"><a href="#构造函数分类" class="headerlink" title="构造函数分类"></a>构造函数分类</h2><ul>
+<li>默认无参构造函数</li>
+<li>有参构造函数</li>
+<li>拷贝构造函数</li>
+</ul>
+<h2 id="构造函数的调用规则"><a href="#构造函数的调用规则" class="headerlink" title="构造函数的调用规则"></a>构造函数的调用规则</h2><p>默认情况下,C++ 编译器至少给一个类添加3个函数</p>
+<ul>
+<li>默认构造函数(无参, 函数体为空)</li>
+<li>默认析构函数(无参, 函数体为空)</li>
+<li>默认构造函数,对属性进行值拷贝 (引出深浅拷贝问题)</li>
+</ul>
+<p>构造函数调用规则如下：</p>
+<ul>
+<li>如果用户定义有参构造函数，c++不提供默认无参构造，但是会提供默认拷贝构造</li>
+<li>如果用户定义拷贝构造函数，c++不再提供其他构造函数</li>
+</ul>
+    
+    <a class="article-more-a" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/04/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E9%97%AE%E9%A2%98/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-关于本博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -526,6 +629,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编译器 TVM</a>
               </li>
             
             <div class="clearfix"></div>
