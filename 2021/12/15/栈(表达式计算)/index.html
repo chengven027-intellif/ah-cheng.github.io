@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/ah-cheng/ah-cheng.github.io">
-  <title>2021-阅读计划 | ah cheng</title>
+  <title>栈(表达式计算) | ah cheng</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="棋王 坏小孩 长夜难明 认知觉醒 赡养人类 皮肤的抗议书 为什么是中国">
+  <meta name="description" content="栈栈的思想: 先进先出 算法将一个中缀表达式转换成后缀表达式, 然后求出其和. 基本思想首先写一个类用来将中缀编程后缀表达式，涉及到的函数主要包含：    - 出栈    - 入栈    - 获得栈顶元素    - 栈内栈外元素的优先级， 栈内的元素优先级是增加， 栈外的元素优先级是减少 标志位#是最低优先级    - 中缀变后缀的实现函数        - 从表达式获得一个字符，如果数字直接进入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2021-阅读计划">
-<meta property="og:url" content="https://github.com/ah-cheng/ah-cheng.github.io/2021/12/04/2021-%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92/index.html">
+<meta property="og:title" content="栈(表达式计算)">
+<meta property="og:url" content="https://github.com/ah-cheng/ah-cheng.github.io/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/index.html">
 <meta property="og:site_name" content="ah cheng">
-<meta property="og:description" content="棋王 坏小孩 长夜难明 认知觉醒 赡养人类 皮肤的抗议书 为什么是中国">
+<meta property="og:description" content="栈栈的思想: 先进先出 算法将一个中缀表达式转换成后缀表达式, 然后求出其和. 基本思想首先写一个类用来将中缀编程后缀表达式，涉及到的函数主要包含：    - 出栈    - 入栈    - 获得栈顶元素    - 栈内栈外元素的优先级， 栈内的元素优先级是增加， 栈外的元素优先级是减少 标志位#是最低优先级    - 中缀变后缀的实现函数        - 从表达式获得一个字符，如果数字直接进入">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-04T07:23:50.000Z">
-<meta property="article:modified_time" content="2021-12-24T03:07:06.688Z">
+<meta property="article:published_time" content="2021-12-15T10:58:43.000Z">
+<meta property="article:modified_time" content="2022-05-31T15:18:45.438Z">
 <meta property="article:author" content="ah cheng">
-<meta property="article:tag" content="杂">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ah cheng" type="application/atom+xml">
@@ -208,14 +208,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2021-阅读计划" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-栈(表达式计算)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      2021-阅读计划
+      栈(表达式计算)
     </h1>
   
 
@@ -227,8 +227,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/12/04/2021-%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92/" class="archive-article-date">
-        <time datetime="2021-12-04T07:23:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-04</time>
+<a href="/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/" class="archive-article-date">
+        <time datetime="2021-12-15T10:58:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-15</time>
 </a>
 
   
@@ -241,7 +241,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">191字</span>
+      <span class="post-count">1.2k字</span>
     </span>
   </span>
 
@@ -250,7 +250,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -261,31 +261,16 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <ul>
-<li>棋王</li>
-<li>坏小孩</li>
-<li>长夜难明</li>
-<li>认知觉醒</li>
-<li>赡养人类</li>
-<li>皮肤的抗议书</li>
-<li>为什么是中国<span id="more"></span></li>
-<li>中国城市大洗牌</li>
-<li>中国经济2021，开启复式时代</li>
-<li>内心虚胖的人需要停下来思考</li>
-<li>跑步治愈</li>
-<li>蛤蟆先生去看心理医生</li>
-<li>基本穿搭：适用一生的穿衣法则</li>
-<li>一本书看懂地缘世界</li>
-<li>每一天梦想练习</li>
-<li>气血才是命根子</li>
-<li>中国国民性演变史</li>
-<li>蒋介石与现代中国</li>
-<li>早起魔法</li>
-<li>每天演好一个情绪稳定的成年人</li>
-<li>从头到脚说健康</li>
-<li>中国八大菜系</li>
-</ul>
-<p>2021 年度还有最后一个月，今年阅读完书籍22本，离目标50本还差蛮远，需要继续努力.</p>
+    <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈的思想: 先进先出</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>将一个中缀表达式转换成后缀表达式, 然后求出其和.</p>
+<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>首先写一个类用来将中缀编程后缀表达式，涉及到的函数主要包含：<br>    - 出栈<br>    - 入栈<br>    - 获得栈顶元素<br>    - 栈内栈外元素的优先级， 栈内的元素优先级是增加， 栈外的元素优先级是减少 标志位#是最低优先级<br>    - 中缀变后缀的实现函数<br>        - 从表达式获得一个字符，如果数字直接进入后缀表达式<br>        - 如果栈内元素 小于 栈外元素，则栈外元素入栈<br>        - 如果栈顶元素 大于 栈外元素，则栈内元素出栈, 符号直接写到后缀表达式， 重复此操作符<br>        - 如果栈顶元素 等于 栈外元素, 则出栈即可.</p>
+<p>再写一个计算和的类<br>    - 如果是数字直接进栈<br>    - 如果是符号，则直接出栈两个数据，根据符号计算相关结果，再把结果进栈</p>
+<span id="more"></span>
+
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">// 中缀变后缀</span><br><span class="line">class Transform&#123;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    char *str;  // 栈数组</span><br><span class="line">    int top;    // 栈顶</span><br><span class="line">    int size;   // 栈能容纳的最大数据</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    // 表达式求值的构造函数</span><br><span class="line">    Transform(int size) &#123;</span><br><span class="line">        this-&gt;size = size;</span><br><span class="line">        str = new char[size];</span><br><span class="line">        top = -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈是否为空</span><br><span class="line">    bool isEmpty() &#123;</span><br><span class="line">        return top == -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈是否已经满了</span><br><span class="line">    bool isFull() &#123;</span><br><span class="line">        return top == this-&gt;size-1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 入栈函数</span><br><span class="line">    void Push(char ch) &#123;</span><br><span class="line">        if(!this-&gt;isFull()) &#123;</span><br><span class="line">            this-&gt;str[++top] = ch;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获得栈顶元素</span><br><span class="line">    char Top() &#123;</span><br><span class="line">        return this-&gt;str[top];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 出栈元素</span><br><span class="line">    void Pop() &#123;</span><br><span class="line">        this-&gt;top--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈外元素优先级</span><br><span class="line">    int icp(char ch) &#123;</span><br><span class="line">        int result = 0;</span><br><span class="line">        if(ch == &#x27;#&#x27;) &#123;</span><br><span class="line">            result = 0;</span><br><span class="line">        &#125; else if(ch == &#x27;(&#x27;) &#123;</span><br><span class="line">            result = 6;</span><br><span class="line">        &#125; else if(ch == &#x27;*&#x27; || ch == &#x27;/&#x27;) &#123;</span><br><span class="line">            result = 4;</span><br><span class="line">        &#125; else if(ch == &#x27;+&#x27; || ch == &#x27;-&#x27;) &#123;</span><br><span class="line">            result = 2;</span><br><span class="line">        &#125; else if (ch == &#x27;)&#x27;) &#123;</span><br><span class="line">            result = 1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈内运算符优先级</span><br><span class="line">    int isp(char ch) &#123;</span><br><span class="line">        int result = 0;</span><br><span class="line">        if(ch == &#x27;#&#x27;) &#123;</span><br><span class="line">            result = 0;</span><br><span class="line">        &#125; else if(ch == &#x27;(&#x27;) &#123;</span><br><span class="line">            result = 1;</span><br><span class="line">        &#125; else if(ch == &#x27;*&#x27; || ch == &#x27;/&#x27;) &#123;</span><br><span class="line">            result = 5;</span><br><span class="line">        &#125; else if (ch == &#x27;+&#x27; || ch == &#x27;-&#x27;) &#123;</span><br><span class="line">            result = 3;</span><br><span class="line">        &#125; else if (ch == &#x27;)&#x27;) &#123;</span><br><span class="line">            result = 6;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 中缀表达式转为后缀表达式</span><br><span class="line">    string Transform_exp(string experssion) &#123;</span><br><span class="line">        // 在中缀表达式和栈中追加&quot;#&quot;表示结束</span><br><span class="line">        experssion.append(&quot;#&quot;);</span><br><span class="line">        this-&gt;Push(&#x27;#&#x27;);</span><br><span class="line"></span><br><span class="line">        int cnt = 0;</span><br><span class="line">        char * tmp, *c;</span><br><span class="line"></span><br><span class="line">        // 中缀表达式</span><br><span class="line">        c = new char[experssion.length()];</span><br><span class="line">        // 后缀表达式</span><br><span class="line">        tmp = new char[experssion.length()]; </span><br><span class="line">        strcpy(c,experssion.c_str());</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; experssion.length(); i++) &#123;</span><br><span class="line">            // 如果是数字，直接输出到后缀表达式中</span><br><span class="line">            if(c[i] &gt;= &#x27;0&#x27; &amp;&amp; c[i] &lt;= &#x27;9&#x27;) &#123;</span><br><span class="line">                tmp[cnt++] = c[i];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 和栈顶元素比较优先级</span><br><span class="line">                char ch = this-&gt;Top();</span><br><span class="line"></span><br><span class="line">                // 栈顶元素优先级比栈外元素优先级低, 则栈外元素入栈</span><br><span class="line">                if(this-&gt;isp(ch) &lt; this-&gt;icp(c[i])) &#123;</span><br><span class="line">                    this-&gt;Push(c[i]);</span><br><span class="line">                &#125; else if(this-&gt;isp(ch) &gt; this-&gt;icp(c[i])) &#123;</span><br><span class="line">                    // 栈顶元素在栈内的优先级比栈外元素的优先级高</span><br><span class="line">                    // 栈内元素出栈，并输出到后缀表达式中，循环变量-1</span><br><span class="line">                    tmp[cnt++] = ch;</span><br><span class="line">                    this-&gt;Pop();</span><br><span class="line">                    i--;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    // 栈内栈外优先级相等</span><br><span class="line">                    // 运行到#号或者是 栈内左括号 栈外右括号, 出栈即可</span><br><span class="line">                    this-&gt;Pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 返回中缀表达式的字符串</span><br><span class="line">        string after = string(tmp,cnt);</span><br><span class="line">        return after;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Sum&#123;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    int *sum;</span><br><span class="line">    int top;</span><br><span class="line">    int size;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    // 表达式求值的构造函数</span><br><span class="line">    Sum(int size) &#123;</span><br><span class="line">        this-&gt;size = size;</span><br><span class="line">        sum = new int[size];</span><br><span class="line">        this-&gt;top = -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈是否为空</span><br><span class="line">    bool IsEmpty() &#123;</span><br><span class="line">        return this-&gt;top == -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 栈是否已经满</span><br><span class="line">    bool IsFull() &#123;</span><br><span class="line">        return this-&gt;top == this-&gt;size - 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 入栈函数</span><br><span class="line">    void Push(int num) &#123;</span><br><span class="line">        if(!this-&gt;IsFull()) &#123;</span><br><span class="line">            this-&gt;sum[++top] = num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获得栈顶元素</span><br><span class="line">    int Top() &#123;</span><br><span class="line">        return this-&gt;sum[top];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 出栈函数</span><br><span class="line">    void Pop() &#123;</span><br><span class="line">        this-&gt;top--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 后缀表达式求和</span><br><span class="line">    int Sum_after(string after) &#123;</span><br><span class="line">        char *s;</span><br><span class="line">        s = new char[after.length()];</span><br><span class="line">        strcpy(s,after.c_str());</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; after.length(); i++ ) &#123;</span><br><span class="line">            if(s[i] &gt;= &#x27;0&#x27; &amp;&amp; s[i] &lt;= &#x27;9&#x27;) &#123;</span><br><span class="line">                this-&gt;Push(s[i] - &#x27;0&#x27;);</span><br><span class="line">            &#125; else&#123;</span><br><span class="line">                int b = this-&gt;Top();</span><br><span class="line">                this-&gt;Pop();</span><br><span class="line">                int a = this-&gt;Top();</span><br><span class="line">                this-&gt;Pop();</span><br><span class="line"></span><br><span class="line">                int result = 0;</span><br><span class="line"></span><br><span class="line">                switch(s[i])&#123;</span><br><span class="line">                    case &#x27;+&#x27;: result = a + b; break;</span><br><span class="line">                    case &#x27;-&#x27;: result = a - b; break;</span><br><span class="line">                    case &#x27;*&#x27;: result = a * b; break;</span><br><span class="line">                    case &#x27;/&#x27;: result = a / b; break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                this-&gt;Push(result);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return this-&gt;Top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string exp;</span><br><span class="line">    cout &lt;&lt; &quot;Please enter the expression: &quot; &lt;&lt; endl;</span><br><span class="line">    cin &gt;&gt; exp;</span><br><span class="line">    </span><br><span class="line">    // 中缀变后缀</span><br><span class="line">    Transform transform(exp.length());</span><br><span class="line">    string after = transform.Transform_exp(exp);</span><br><span class="line">    cout &lt;&lt; &quot;the after exp is: &quot; &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; after &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    // 计算结果</span><br><span class="line">    Sum sum(after.length());</span><br><span class="line">    int result = sum.Sum_after(after);</span><br><span class="line">    cout &lt;&lt; &quot;the result is: &quot; &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; result &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
     
 
@@ -334,7 +319,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">杂</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -390,7 +375,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://github.com/ah-cheng/ah-cheng.github.io/2021/12/04/2021-%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://github.com/ah-cheng/ah-cheng.github.io/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -405,15 +390,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/12/04/%E5%85%B3%E4%BA%8E%E6%9C%AC%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          关于本博客
+          二叉树
         
       </div>
     </a>
   
+  
+    <a href="/2021/12/14/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">双向链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
