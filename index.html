@@ -213,6 +213,107 @@
             
 
   
+    <article id="post-class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/01/class/">class</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/01/class/" class="archive-article-date">
+        <time datetime="2022-06-01T13:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h3><p>C++ Primer 7.1 定义抽象数据类型 </p>
+<h3 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h3><p>成员函数通过this指针来访问调用它的那个对象. this指针是所有成员函数隐含对象<br>this指针总是指向”这个”对象,所以this是一个常量指针.<br>友元函数没有this指针,因为友元不是类的成员,只有成员函数才有this指针</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>默认情况， this指针的类型是指向 类类型  非const对象 的 常量指针. 即 sales_data * const.</p>
+<p>把this指针声明成指向 常量对象 的常量指针就需要把 const放在成员函数的参数列表后面.<br>此时成员函数就叫做   常量成员函数. 即不能改变调用它的对象的内容.</p>
+<h3 id="IO-类"><a href="#IO-类" class="headerlink" title="IO 类"></a>IO 类</h3><p>istream &is;<br>ostream &os;<br>IO类属于不能被拷贝的类型,只能通过引用来调用他们<br>读入和输出的操作会改变流的内容,所以两个函数都只是普通的引用而不是常量的引用</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>初始化类对象的成员函数, 无论何时类对象被创建就会执行构造函数</p>
+<p>构造函数不能初始化</p>
+<h4 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h4><p>c++11 可以通过在参数列表后面写上 =default 来要求编译器生成构造函数. </p>
+<p>如果默认构造函数出现在类的内部, 则默认构造函数是内联的<br>如果出现在类的外部, 则该成员默认情况下不是内联的</p>
+<h3 id="构造函数初始值列表"><a href="#构造函数初始值列表" class="headerlink" title="构造函数初始值列表"></a>构造函数初始值列表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sales_data(const std::string &amp;s, unsigned n, double p) : bookno(s), units_sold(n), revenue(p*n) &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/01/class/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-哈夫曼树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1046,95 +1147,6 @@
 
 
   
-    <article id="post-哈希表-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/11/%E5%93%88%E5%B8%8C%E8%A1%A8-%E4%BA%8C/">哈希表(二)</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/11/%E5%93%88%E5%B8%8C%E8%A1%A8-%E4%BA%8C/" class="archive-article-date">
-        <time datetime="2021-12-11T01:32:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="链表分离法"><a href="#链表分离法" class="headerlink" title="链表分离法"></a>链表分离法</h3><p>基本思想: 将相应位置上冲突的所有关键字存储在同一个单链表中, 构造以所有可能地址为头的单链表地址.</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3>
-    
-    <a class="article-more-a" href="/2021/12/11/%E5%93%88%E5%B8%8C%E8%A1%A8-%E4%BA%8C/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/11/%E5%93%88%E5%B8%8C%E8%A1%A8-%E4%BA%8C/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1258,6 +1270,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">compiler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Cpp primer</a>
               </li>
              
               <li class="article-tag-list-item">
