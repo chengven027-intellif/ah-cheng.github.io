@@ -213,6 +213,108 @@
             
 
   
+    <article id="post-7.3类的其他特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/03/7.3%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7/">类的其他特性</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/03/7.3%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7/" class="archive-article-date">
+        <time datetime="2022-06-03T14:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="类中别名"><a href="#类中别名" class="headerlink" title="类中别名"></a>类中别名</h3><p>类中可以自定义某种类型在类中的别名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class xxx &#123;</span><br><span class="line">   public:</span><br><span class="line">       typedef std::string::size_type pos;</span><br><span class="line">       </span><br><span class="line">       using std::string::size_type pos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类型名字和其他成员一样存在访问限制.</p>
+<h3 id="成员内联函数"><a href="#成员内联函数" class="headerlink" title="成员内联函数"></a>成员内联函数</h3><p>把 inline 作为声明的一部分显示地声明成员函数.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inline char get(pos ht, pos wd) const;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重载成员函数"><a href="#重载成员函数" class="headerlink" title="重载成员函数"></a>重载成员函数</h3><p>成员函数也是可以被重载<br>跟普通函数重载一模一样</p>
+<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><p>希望修改一个类的某个数据成员, 即使在const对象的成员. 可以在变量的声明中加入 <code>mutable</code> 这个关键字</p>
+<p>可变数据成员永远不会是const. 即使它是const对象的成员.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Screen&#123;</span><br><span class="line"> public:</span><br><span class="line">     void some_member() const;</span><br><span class="line"> private:</span><br><span class="line">     mutable size_t access_ctr;          // 即使在一个const成员函数中也能够被修改</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Screen：：some_member() const&#123;</span><br><span class="line">     access_ctr++;   // 保存一个计数值, 可以用于记录成员函数被调用的次数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类内初始值"><a href="#类内初始值" class="headerlink" title="类内初始值"></a>类内初始值</h3><p>提供一个类的初始值, 必须以符号 =  或者花括号表示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;Screen&gt; screen(Screen(24, 80, &quot;&quot; ));</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回-this的成员函数"><a href="#返回-this的成员函数" class="headerlink" title="返回*this的成员函数"></a>返回*this的成员函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inline Screen&amp; Screen::set(char c) &#123;</span><br><span class="line">    content[cursor] = c;</span><br><span class="line">    return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回值是调用set的对象的引用, 返回引用的函数是左值, 即这些函数返回的对象本身而非对象的副本.</p>
+<p>如果返回值不是引用, 则返回值就是 <code>*this</code> 的副本，调用set只能改变临时副本,而不能改变myScreen的值</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/03/7.3%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-7.2访问控制与封装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -309,7 +411,7 @@
 
 
   
-    <article id="post-class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-7.1定义抽象数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -317,7 +419,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2022/06/01/class/">class</a>
+	  <a class="article-title" href="/2022/06/01/7.1%E5%AE%9A%E4%B9%89%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">class</a>
 	
     </h1>
   
@@ -325,7 +427,7 @@
 
   
   
-<a href="/2022/06/01/class/" class="archive-article-date">
+<a href="/2022/06/01/7.1%E5%AE%9A%E4%B9%89%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
         <time datetime="2022-06-01T13:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-01</time>
 </a>
 
@@ -380,7 +482,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2022/06/01/class/">宠幸它 >></a>
+      <a class="article-more-a" href="/2022/06/01/7.1%E5%AE%9A%E4%B9%89%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">宠幸它 >></a>
     </p>
     
 
@@ -1067,94 +1169,6 @@
 
 
   
-    <article id="post-双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/14/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">双向链表</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/14/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-        <time datetime="2021-12-14T07:32:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>跟单链表类似，多一个方向指向前结点</p>
-    
-    <a class="article-more-a" href="/2021/12/14/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/14/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1273,11 +1287,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">杂</a>
+                <a href="javascript:void(0)" class="js-tag color1">Cpp primer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Cpp primer</a>
+                <a href="javascript:void(0)" class="js-tag color2">杂</a>
               </li>
              
               <li class="article-tag-list-item">
