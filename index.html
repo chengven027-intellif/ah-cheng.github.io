@@ -213,6 +213,409 @@
             
 
   
+    <article id="post-7.6类的静态成员" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/04/7.6%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98/">类的静态成员</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/04/7.6%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98/" class="archive-article-date">
+        <time datetime="2022-06-04T14:43:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h3><p>c++ primer 7.6 类的静态成员</p>
+<h3 id="声明静态成员"><a href="#声明静态成员" class="headerlink" title="声明静态成员"></a>声明静态成员</h3><p>类的静态成员 存在于所有对象之外,  对象中不包含任何与静态数据成员有关的数据.</p>
+<p>静态成员函数也不与所有对象绑定在一起, 他们不包含this指针. </p>
+<p>静态成员函数不能声明成const, 我们也不能在static函数体内使用this指针.</p>
+<h3 id="使用类的静态成员"><a href="#使用类的静态成员" class="headerlink" title="使用类的静态成员"></a>使用类的静态成员</h3><p>可以使用作用域运算符直接访问静态成员</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class account&#123;</span><br><span class="line">    ...</span><br><span class="line">    public:</span><br><span class="line">        static  void rate(double);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">double r;</span><br><span class="line">r = account::rate();</span><br></pre></td></tr></table></figure>
+<p>虽然静态成员不属于某个类对象. 但是我们可以使用类的对象、 引用、 指针来访问静态成员. </p>
+<h3 id="定义静态成员函数"><a href="#定义静态成员函数" class="headerlink" title="定义静态成员函数"></a>定义静态成员函数</h3><p>可以在类的内部或者外部 定义 静态成员函数 。<br>在类的外部定义静态成员时, 不能重复 static 关键字， 该关键字只出现在类内部的声明语句中</p>
+<p>静态数据成员不是在创建类的对象时被定义， 即不是由类的构造函数初始化的</p>
+<p>必须在类的外部定义和初始化每个静态成员. 每个静态成员只能定义一次.</p>
+<h3 id="静态成员的类内初始化"><a href="#静态成员的类内初始化" class="headerlink" title="静态成员的类内初始化"></a>静态成员的类内初始化</h3><p>类的静态成员不应该在类的内部初始化。 但是我们可以为静态成员提供const类型的类内初始值.<br>要求静态成员必须是字面值常量类型的 constexpr.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Account&#123;</span><br><span class="line">    private:</span><br><span class="line">      static constexpr int period = 30; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/04/7.6%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-7.5构造函数再探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/04/7.5%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%86%8D%E6%8E%A2/">7.5 构造函数再探</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/04/7.5%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%86%8D%E6%8E%A2/" class="archive-article-date">
+        <time datetime="2022-06-04T02:48:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h3><p>c++ primer 7.5 构造函数再探</p>
+<h3 id="构造初始值列表"><a href="#构造初始值列表" class="headerlink" title="构造初始值列表"></a>构造初始值列表</h3><p>有时可以忽略成员初始化和赋值之间的差异,但是当成员是 const  或者 引用 的话, 必须将其初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ConstRef&#123;</span><br><span class="line">    ...</span><br><span class="line">  private:</span><br><span class="line">    int i;</span><br><span class="line">    const int ci;</span><br><span class="line">    int &amp;ri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ConstRef::ConstRef(int ii) &#123;</span><br><span class="line">    i = ii;</span><br><span class="line">    ci = ii;        // 错误, 不能给const赋值</span><br><span class="line">    ri = ii;        // 错误, ri没被初始化</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以如果成员时const, 引用, 或者某种μ提供默认构造函数的类类型, 我们必须通过构造函数初始值列表为这些成员提供初始值.</p>
+<h3 id="成员初始化的顺序"><a href="#成员初始化的顺序" class="headerlink" title="成员初始化的顺序"></a>成员初始化的顺序</h3><p>顺序不会影响实际的初始化顺序</p>
+<h3 id="默认实参与构造函数"><a href="#默认实参与构造函数" class="headerlink" title="默认实参与构造函数"></a>默认实参与构造函数</h3><p>重写默认构造函数与定义实参</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Sales_data&#123;</span><br><span class="line">  public:</span><br><span class="line">    Sales_data(std::string s = &quot;&quot;): books(s) &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h3><p>一个委托构造函数 使用它 所属类 的其他构造函数 来执行自己的初始化过程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Sales_data&#123;</span><br><span class="line">  public:</span><br><span class="line">    Sales_data(std::string s, unsigned cnt, double price) : bookNO(s), units_sole(cnt), revenue(cnt * price) &#123;&#125; // 非委托构造函数</span><br><span class="line">    // 其他构造函数全部都委托给另外一个构造函数</span><br><span class="line">    Sales_data():Sales_data(&quot;&quot;, 0, 0) &#123;&#125;</span><br><span class="line">    Sales_data(std::string s) : Sales_data(&quot;&quot;, 0, 0) &#123;&#125;</span><br><span class="line">    Sales_data(std::istream &amp;is) : Sales_data() &#123; read(is, *this); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了第一个其他的都委托了它们的工作.</p>
+<p>第一个委托构造函数， 是定义的默认构造函数, 它委托给3个参数的构造函数来完成工作<br>第二个委托构造函数 std::string， 同样也是讲工作委托给三个参数的构造函数<br>第三个委托构造函数,将工作委托给默认构造函数，默认构造函数再将工作委托给 三个参数的构造函数来完成初始化， 最后再执行自己的函数体的read语句.</p>
+<h3 id="只允许一步类型转换"><a href="#只允许一步类型转换" class="headerlink" title="只允许一步类型转换"></a>只允许一步类型转换</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">item.combine(&quot;0-999-99999-9&quot;)           //错误, 0-999... 需要先转化成字符串在转化成Sales_data.</span><br><span class="line"></span><br><span class="line">可以直接显示转换</span><br><span class="line">item.combine(string(&quot;0-999-99999-9&quot;))</span><br><span class="line">item.combine(Sales_data(&quot;0-999-99999-9&quot;))</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数"></a>转换构造函数</h3><p>如果构造函数只接受一个实参, 则它实际上转换为此类类型的隐式转换机制.</p>
+<p>在要求隐式转换的上下文中, 可以将构造函数 声明为 explicit 加以阻止.</p>
+<p>explicit 只对一个实参的构造函数有效</p>
+<p>只能在类内声明构造函数使用 explicit, 类外定义不应重复.</p>
+<p>explicit 构造函数只能使用直接() 初始化,  而不能使用拷贝(=) 初始化.</p>
+<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><p>满足下列所有条件</p>
+<ul>
+<li>所有成员时public</li>
+<li>没有定义任何构造函数</li>
+<li>没有类内初始值</li>
+<li>没有基类  没有 virtual 函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Data &#123;</span><br><span class="line">    int ival;</span><br><span class="line">    string s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">直接初始化</span><br><span class="line"></span><br><span class="line">Data vall = &#123;0, &quot;Anna&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="字面值常量类"><a href="#字面值常量类" class="headerlink" title="字面值常量类"></a>字面值常量类</h3><ul>
+<li>数据成员都必须是字面值类型(constexpr)</li>
+<li>至少有一个constexpr的构造函数</li>
+<li>如果一个数据成员含有类内初始值, 则内置数据成员的初始值必须是一条常量表达式</li>
+<li>必须使用析构函数的默认定义</li>
+</ul>
+<h3 id="constexpr-构造函数"><a href="#constexpr-构造函数" class="headerlink" title="constexpr 构造函数"></a>constexpr 构造函数</h3><p>构造函数不能是const, 但是字面值常量类的构造函数可以是 constexpr。</p>
+<p>constexpr 必须即符合构造函数的要求 又要符号 constexpr 函数的要求.<br>所以 constexpr 构造函数体 一般来说是空的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Debug &#123;</span><br><span class="line">    constexpr Debug (bool b = true): hw(b), io(b), other(b) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>constexpr 构造函数必须初始化所有数据成员, 初始值, 或者使用 constexpr 构造函数</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/04/7.5%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%86%8D%E6%8E%A2/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-7.4类的作用域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/04/7.4%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/">7.4 类的作用域</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/04/7.4%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="archive-article-date">
+        <time datetime="2022-06-04T02:31:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/04/7.4%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-7.3友元再探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/06/04/7.3%E5%8F%8B%E5%85%83%E5%86%8D%E6%8E%A2/">友元再探</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/06/04/7.3%E5%8F%8B%E5%85%83%E5%86%8D%E6%8E%A2/" class="archive-article-date">
+        <time datetime="2022-06-04T02:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h3><p>7.3 友元再探</p>
+<h3 id="类之间的友元关系"><a href="#类之间的友元关系" class="headerlink" title="类之间的友元关系"></a>类之间的友元关系</h3><p>类可以把其他类设置成友元</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Screen&#123;</span><br><span class="line">    friend class Window_mgr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一个类指定了友元类,则友元类的成员函数可以访问 此类包含非公有成员 在内的所有成员.</p>
+<p>需要注意的是, 友元不存在传递性, 如果 Window_mgr 有自己大的友元, 则这些友元不能访问Screen的成员数据</p>
+<h3 id="成员函数的友元关系"><a href="#成员函数的友元关系" class="headerlink" title="成员函数的友元关系"></a>成员函数的友元关系</h3><p>类指定其他类中的某一个成员函数, 即只为这个成员函数提供权限.</p>
+<h3 id="函数重载与友元"><a href="#函数重载与友元" class="headerlink" title="函数重载与友元"></a>函数重载与友元</h3><p>如果一个类想把一组重载函数声明成它的友元, 就需要对这组函数中的每一个分别声明.</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cpp primer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/06/04/7.3%E5%8F%8B%E5%85%83%E5%86%8D%E6%8E%A2/">宠幸它 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-7.3类的其他特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -787,391 +1190,9 @@
 
 
   
-    <article id="post-GlOW编译器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/21/GlOW%E7%BC%96%E8%AF%91%E5%99%A8/">GlOW 编译器</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/21/GlOW%E7%BC%96%E8%AF%91%E5%99%A8/" class="archive-article-date">
-        <time datetime="2021-12-21T13:57:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文是对GLOW的一篇论文的学习总结. 原文参考如下：<br><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.00907.pdf">英文版</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/405569017">中文版</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>GLOW将传统的神经网络数据流图lower成两个阶段的强类型中间表示.</p>
-<p>高层中间表示允许优化器执行领域特定优化.<br>低层基于指令的纯地址(address-only)中间表示允许编译器执行存储相关的优化. 如指令调度、静态内存分配、拷贝消除.<br>最低层利用具体硬件特性,执行机器特定代码生成.</p>
-<p>Lowering步骤旨在减少输入空间,让新的硬件后端专注于少数线性代数原语.</p>
-<h3 id="五个机器学习领域特定的架构-DSA"><a href="#五个机器学习领域特定的架构-DSA" class="headerlink" title="五个机器学习领域特定的架构(DSA)"></a>五个机器学习领域特定的架构(DSA)</h3><ul>
-<li>专用的本地存储</li>
-<li>大量的算术单元</li>
-<li>简单形式的并行</li>
-<li>精简的位宽</li>
-<li>特定领域的编程模型</li>
-</ul>
-    
-    <a class="article-more-a" href="/2021/12/21/GlOW%E7%BC%96%E8%AF%91%E5%99%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">compiler</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/21/GlOW%E7%BC%96%E8%AF%91%E5%99%A8/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-AI编译优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/">AI编译优化</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2021-12-21T07:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>本文是对知乎大佬杨军的文章的一个总结学习笔记.<br>原文请参考：知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/163717035">AI编译优化–总纲</a></p>
-<h3 id="常用的一些编译框架"><a href="#常用的一些编译框架" class="headerlink" title="常用的一些编译框架"></a>常用的一些编译框架</h3><ul>
-<li>TensorFlow XLA</li>
-<li>TVM</li>
-<li>Tensor Comprehension</li>
-<li>GLOW</li>
-<li>MLIR</li>
-</ul>
-<h3 id="编译器概述"><a href="#编译器概述" class="headerlink" title="编译器概述"></a>编译器概述</h3><ol>
-<li>深度学习编译器,其输入是比较灵活的,具备较高抽象度的计算图,输出包括CPU或者GPU等硬件平台上的底层机器码及执行引擎.</li>
-<li>AI编译器的目标是针对AI计算任务,以通用编译器的方式完成性能优化. 让用户可以专注于上层模型开发，降低用户手工优化性能的人力开发成本，进一步压榨硬件性能空间.</li>
-</ol>
-<ul>
-<li>计算密集算子(比如GEMM 和 Convolution)</li>
-<li>访存密集算子(比如Elementwise Add 和 BN)</li>
-</ul>
-    
-    <a class="article-more-a" href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">compiler</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/21/AI%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-        <time datetime="2021-12-21T05:55:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>基本结构，有左右子节点和自己的数据域</p>
-<p>满二叉树：除最后一层无任何子节点外,每一层上的所有节点都有两个子节点的二叉树</p>
-<p>完全二叉树：如二叉树的深度为h,除第h层外,其他各层(1~h-1)的节点数都打到了最大个数,第h层所有节点都连续集中在最左边,这就是完全二叉树.</p>
-    
-    <a class="article-more-a" href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/21/%E4%BA%8C%E5%8F%89%E6%A0%91/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-栈(表达式计算)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/">栈(表达式计算)</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/" class="archive-article-date">
-        <time datetime="2021-12-15T10:58:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈的思想: 先进先出</p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>将一个中缀表达式转换成后缀表达式, 然后求出其和.</p>
-<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>首先写一个类用来将中缀编程后缀表达式，涉及到的函数主要包含：<br>    - 出栈<br>    - 入栈<br>    - 获得栈顶元素<br>    - 栈内栈外元素的优先级， 栈内的元素优先级是增加， 栈外的元素优先级是减少 标志位#是最低优先级<br>    - 中缀变后缀的实现函数<br>        - 从表达式获得一个字符，如果数字直接进入后缀表达式<br>        - 如果栈内元素 小于 栈外元素，则栈外元素入栈<br>        - 如果栈顶元素 大于 栈外元素，则栈内元素出栈, 符号直接写到后缀表达式， 重复此操作符<br>        - 如果栈顶元素 等于 栈外元素, 则出栈即可.</p>
-<p>再写一个计算和的类<br>    - 如果是数字直接进栈<br>    - 如果是符号，则直接出栈两个数据，根据符号计算相关结果，再把结果进栈</p>
-    
-    <a class="article-more-a" href="/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/15/%E6%A0%88(%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97)/">宠幸它 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1287,11 +1308,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Cpp primer</a>
+                <a href="javascript:void(0)" class="js-tag color2">杂</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">杂</a>
+                <a href="javascript:void(0)" class="js-tag color1">Cpp primer</a>
               </li>
              
               <li class="article-tag-list-item">
